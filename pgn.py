@@ -14,6 +14,7 @@ def save_game(game, file):
     print(game, file=file, end="\n\n")
 
 
+output_dir = "./output/"
 input_path = Path("./input")
 input_files = input_path.glob("*.pgn")
 
@@ -21,17 +22,18 @@ for f in input_files:
     filename = f.stem
     try:
         with open(f, mode="rt") as pgn_file, open(
-            f"./output/{filename}-white.pgn", mode="wt"
+            f"{output_dir}{filename}-white.pgn", mode="wt"
         ) as white_file, open(
-            f"./output/{filename}-black.pgn", mode="wt"
+            f"{output_dir}{filename}-black.pgn", mode="wt"
         ) as black_file:
+            print(f"Processing {f}")
             while True:
-                print("----------------------------------------")
+                # print("----------------------------------------")
                 game = pgn.read_game(pgn_file)
                 if game:
-                    print(game.mainline_moves())
+                    # print(game.mainline_moves())
                     side = side_to_move_first(game)
-                    print(f"{side} to move")
+                    # print(f"{side} to move")
                     if side == "white":
                         save_game(game, white_file)
                     elif side == "black":
