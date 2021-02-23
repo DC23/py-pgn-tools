@@ -13,6 +13,7 @@ def side_to_move_first(game):
 def save_game(game, file):
     print(game, file=file, end="\n\n")
 
+
 input_path = Path("./input")
 input_files = input_path.glob("*.pgn")
 
