@@ -9,13 +9,17 @@ def side_to_move_first(game):
         return "white"
 
 
-pgn_file = open("./bain-pins.pgn")
-while True:
-    print("----------------------------------------")
-    game = pgn.read_game(pgn_file)
-    if game:
-        print(game.mainline_moves())
-        print(f"{side_to_move_first(game)} to move")
-        # print(game.headers)
-    else:
-        break
+for filename in ("bain-pins",):
+    try:
+        with open(f"./files/{filename}.pgn", mode="rt") as pgn_file:
+            while True:
+                print("----------------------------------------")
+                game = pgn.read_game(pgn_file)
+                if game:
+                    print(game.mainline_moves())
+                    print(f"{side_to_move_first(game)} to move")
+                    # print(game.headers)
+                else:
+                    break
+    except OSError as e:
+        print(e)
