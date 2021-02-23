@@ -1,3 +1,4 @@
+from pathlib import Path
 from chess import pgn
 
 
@@ -12,10 +13,13 @@ def side_to_move_first(game):
 def save_game(game, file):
     print(game, file=file, end="\n\n")
 
+input_path = Path("./input")
+input_files = input_path.glob("*.pgn")
 
-for filename in ("bain-pins",):
+for f in input_files:
+    filename = f.stem
     try:
-        with open(f"./input/{filename}.pgn", mode="rt") as pgn_file, open(
+        with open(f, mode="rt") as pgn_file, open(
             f"./output/{filename}-white.pgn", mode="wt"
         ) as white_file, open(
             f"./output/{filename}-black.pgn", mode="wt"
