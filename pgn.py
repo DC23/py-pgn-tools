@@ -9,19 +9,17 @@ def side_to_move_first(game):
         return "white"
 
 
-def save_white_game(game, file):
-    pass
-
-
-def save_black_game(game, file):
-    pass
+def save_game(game, file):
+    print(game, file=file, end="\n\n")
 
 
 for filename in ("bain-pins",):
     try:
         with open(f"./files/{filename}.pgn", mode="rt") as pgn_file, open(
             f"./output/{filename}-white.pgn", mode="wt"
-        ) as white_file:
+        ) as white_file, open(
+            f"./output/{filename}-black.pgn", mode="wt"
+        ) as black_file:
             while True:
                 print("----------------------------------------")
                 game = pgn.read_game(pgn_file)
@@ -30,7 +28,9 @@ for filename in ("bain-pins",):
                     side = side_to_move_first(game)
                     print(f"{side} to move")
                     if side == "white":
-                        save_white_game(game, white_file)
+                        save_game(game, white_file)
+                    elif side == "black":
+                        save_game(game, black_file)
                     # print(game.headers)
                 else:
                     break
