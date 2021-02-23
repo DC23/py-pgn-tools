@@ -9,6 +9,14 @@ def side_to_move_first(game):
         return "white"
 
 
+def save_white_game(game, filename):
+    pass
+
+
+def save_black_game(game, filename):
+    pass
+
+
 for filename in ("bain-pins",):
     try:
         with open(f"./files/{filename}.pgn", mode="rt") as pgn_file:
@@ -17,7 +25,10 @@ for filename in ("bain-pins",):
                 game = pgn.read_game(pgn_file)
                 if game:
                     print(game.mainline_moves())
-                    print(f"{side_to_move_first(game)} to move")
+                    side = side_to_move_first(game)
+                    print(f"{side} to move")
+                    if side == "white":
+                        save_wh
                     # print(game.headers)
                 else:
                     break
