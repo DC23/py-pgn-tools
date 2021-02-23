@@ -15,7 +15,7 @@ def save_game(game, file):
 
 for filename in ("bain-pins",):
     try:
-        with open(f"./files/{filename}.pgn", mode="rt") as pgn_file, open(
+        with open(f"./input/{filename}.pgn", mode="rt") as pgn_file, open(
             f"./output/{filename}-white.pgn", mode="wt"
         ) as white_file, open(
             f"./output/{filename}-black.pgn", mode="wt"
